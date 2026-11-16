@@ -17,7 +17,8 @@ code readable, with short comments on anything non-obvious.
 
 ## Files
 
-- `index.html` — the page; one full-screen `<canvas>`, links the two files below.
+- `index.html` — the page; one full-screen `<canvas>`, a "touch the stars" hint
+  that fades on first touch, and links to the two files below.
 - `style.css` — full-screen canvas, black background, `touch-action: none`
   so dragging does not scroll or zoom the page.
 - `galaxy.js` — creates the stars, updates them each frame, draws them.
@@ -25,13 +26,18 @@ code readable, with short comments on anything non-obvious.
 ## How it works
 
 - Rendering uses the Canvas 2D API (not WebGL), chosen for readability.
-- Each star has a "home" position on a spiral arm and a current position.
-  Homes rotate around the centre, inner stars faster than outer ones.
+- Each star has a "home" position and a current position. About 75% of
+  stars sit on the spiral arms and all turn at the same speed, so the
+  spiral keeps its shape (different speeds would wind the arms into a
+  smear). The rest are loose "dust" stars that turn faster near the centre.
+- Stars start at the centre, so the galaxy bursts open on page load.
+- The tunable numbers (arms, twist, speed, spring, push) are the settings
+  block at the top of `galaxy.js`.
 - A spring pulls each star toward its home; a touch pushes nearby stars
   away and sideways, so they swirl and then settle back.
 - Glow: a soft dot image is drawn once to an offscreen canvas, then stamped
   per star with `globalCompositeOperation = "lighter"` so overlaps brighten.
-- Star count scales with screen size (roughly 2,000-5,000).
+- Star count scales with screen size (2,500-5,000).
 - The canvas is sized by `devicePixelRatio` (capped at 2) and resized on
   window resize / rotation.
 - Animation runs on `requestAnimationFrame`; use Pointer Events for input
