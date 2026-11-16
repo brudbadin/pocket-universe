@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Fit the phone screen and stop pinch-zoom from fighting with the galaxy -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Pocket Universe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Everything is drawn onto this one canvas by galaxy.js -->
+  <canvas id="galaxy" aria-label="An interactive spiral galaxy of glowing stars"></canvas>
+
+  <!-- A small hint that fades away the first time you touch the screen -->
+  <p id="hint">touch the stars</p>
+
+  <script src="galaxy.js"></script>
+</body>
+</html>
